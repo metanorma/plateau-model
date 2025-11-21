@@ -2,6 +2,9 @@
 
 This repository contains the PLATEAU v5.1 UML model and generates a browser-based visualization using LutaML.
 
+The site can be accessed at:
+* [Project PLATEAU UML models site](https://metanorma.github.io/plateau-model)
+
 ## Prerequisites
 
 - Ruby 3.2 or later
