@@ -28,9 +28,9 @@ jobs:
           ruby-version: '3.2'
           bundler-cache: true
 
-      - name: Generate browser.html
+      - name: Generate site
         run: |
-          bundle exec lutaml uml build-spa 20251010_current_plateau_v5.1.qea -o browser.html
+          bundle exec lutaml uml build-spa 20251010_current_plateau_v5.1.qea -o index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
