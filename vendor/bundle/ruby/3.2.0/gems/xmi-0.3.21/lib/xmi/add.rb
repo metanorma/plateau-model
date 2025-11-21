@@ -1,0 +1,63 @@
+# frozen_string_literal: true
+
+require_relative "difference"
+require_relative "extension"
+
+module Xmi
+  class Add < Lutaml::Model::Serializable
+    attribute :id, :string
+    attribute :label, :string
+    attribute :uuid, :string
+    attribute :href, :string
+    attribute :idref, :string
+    attribute :type, :string
+    attribute :target, :string
+    attribute :container, :string
+    attribute :position, :integer
+    attribute :addition, :string
+    attribute :difference, Difference, collection: true
+    attribute :extension, Extension, collection: true
+
+    xml do # rubocop:disable Metrics/BlockLength
+      root "Add"
+      namespace "http://www.omg.org/spec/XMI/20131001", "xmlns"
+
+      map_attribute "id", to: :id, prefix: "xmlns", namespace: "http://www.omg.org/spec/XMI/20131001"
+      map_attribute "label", to: :label, prefix: "xmlns", namespace: "http://www.omg.org/spec/XMI/20131001"
+      map_attribute "uuid", to: :uuid, prefix: "xmlns", namespace: "http://www.omg.org/spec/XMI/20131001"
+      map_attribute "href", to: :href
+      map_attribute "idref", to: :idref, prefix: "xmlns", namespace: "http://www.omg.org/spec/XMI/20131001"
+      map_attribute "type", to: :type, prefix: "xmlns", namespace: "http://www.omg.org/spec/XMI/20131001"
+      map_attribute "target", to: :target
+      map_attribute "container", to: :container
+      map_attribute "position", to: :position
+      map_attribute "addition", to: :addition
+      map_element "difference", to: :difference, prefix: nil, namespace: nil,
+                                value_map: {
+                                  from: {
+                                    nil: :empty,
+                                    empty: :empty,
+                                    omitted: :empty
+                                  },
+                                  to: {
+                                    nil: :empty,
+                                    empty: :empty,
+                                    omitted: :empty
+                                  }
+                                }
+      map_element "Extension", to: :extension,
+                               value_map: {
+                                 from: {
+                                   nil: :empty,
+                                   empty: :empty,
+                                   omitted: :empty
+                                 },
+                                 to: {
+                                   nil: :empty,
+                                   empty: :empty,
+                                   omitted: :empty
+                                 }
+                               }
+    end
+  end
+end
